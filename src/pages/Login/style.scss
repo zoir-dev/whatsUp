@@ -1,0 +1,103 @@
+.login_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    h1{
+        font-weight: 400;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+    p{
+        font-size: 16px;
+        color: #dadfe1;
+        margin-bottom: 40px;
+        a{
+            text-decoration: none;
+            color: #50b7e3;
+        }
+    }
+    div{
+        .flag-dropdown{
+            background-color: transparent !important;
+            border: 2px solid #008069 !important;
+            color: black !important;
+        }
+        input{
+            background-color: transparent !important;
+            color: #dadfe1;
+            border: 2px solid #008069 !important;
+            outline: none !important;
+        }
+    }
+}
+.next_button{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    background-color: #008069;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    
+    svg{
+        transition: transform 0.2s ease-in-out;
+        font-size: 16px;
+    }
+    &:hover{
+        svg{
+           transform: translateX(7px);
+        }
+    }
+}
+.login_modal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    margin-top: 30vh;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #111b21;
+    padding: 40px;
+    border-radius: 20px;
+    div{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 30px;
+        svg{
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+    .input_div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        h2{
+            font-weight: 400;
+        }
+        
+        input{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            border: 1px solid #008069;
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: #dadfe1;
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+ .left_div{
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+        height: 96vh;
+        border-right: 1px solid #2f3b43;
+
+        
+
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #202c33;
+            padding: 10px 20px;
+
+            .user_info{
+                img{
+                    border-radius: 50%;
+                    width: 40px;
+                }
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0;
+                    span{
+                        font-size: 12px;
+                        color: #aebac1;
+                    }
+                }
+            }
+            div{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                svg{
+                    font-size: 24px;
+                    cursor: pointer;
+                    color:#aebac1;
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+        .search_div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 10px;
+
+            svg{
+                color: #aebac1;
+                font-size: 20px;
+                cursor: pointer;
+                &:hover{
+                    color: white;
+                }
+            }
+            div{
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                background-color: #202c33;
+                padding: 10px 20px;
+                border-radius: 8px;
+                width: 100%;
+                transition: 0.5 ease all;
+
+                input{
+                    background-color: transparent;
+                    outline: none;
+                    border: none;
+                    color: #aebac1;
+                    font-size: 16px;
+                    width: 100%;
+                }
+            }
+        }
+        .chats_footer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin: 20px;
+            padding: 15px;
+            border-top: 1px solid rgba(134,150,160,0.15);
+            svg{
+                font-size: 14px;
+                color: #aebac1;
+            }
+            p{
+                font-size: 14px;
+
+                a{
+                    color: #50b7e3;
+                    text-decoration: none;
+                }
+            }
+        }
+    }

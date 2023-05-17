@@ -1,0 +1,68 @@
+.right_div{
+    width: 65%;
+    position: relative;
+    svg{
+        font-size: 24px;
+        cursor: pointer;
+        color:#aebac1;
+        &:hover{
+            color: white;
+        }
+    }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 1px 3px rgba(var(--shadow-rgb),.4);
+        cursor: pointer;
+        width: 100%;
+        background-color: #202c33;
+        padding: 10px 20px;
+        .name_div{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            img{
+                width: 40px;
+                border-radius: 50%;
+            }
+            h3{
+                font-weight: 400;
+            }
+        }
+        .icons{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+        }
+
+    }
+    .footer{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 20px;
+        background-color: #202c33;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        
+        .attachFile{
+            transform: rotate(45deg);
+
+        }
+        input{
+            width: 100%;
+            bottom: none;
+            outline: none;
+            border: none;
+            background-color: #2a3942;
+            color: #aebac1;
+            font-size: 16px;
+            width: 100%;
+            padding: 9px 12px;
+            border-radius: 8px;
+        }
+    }
+}
