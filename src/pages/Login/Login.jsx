@@ -1,43 +1,54 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import "./style.scss";
-import { ArrowForward } from "@mui/icons-material";
-import Modall from "./Modal";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [phone, setPhone] = useState();
-  const [open, setOpen] = useState(false);
-  const user = false;
+  const [qr, setQr] = useState("");
+  const [accState, setAccState] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const getQrCode = async () => {
+    await axios
+      .get(
+        `https://api.green-api.com/waInstance1101822090/qr/87b8fb91f77f4ec780f8820daea7f87733a94ea55d084b5594`
+      )
+      .then((d) => setQr(d.data.message))
+      .catch((error) => console.log(error));
+  };
+  const getAccountState = async () => {
+    await axios
+      .get(
+        `https://api.green-api.com/waInstance1101822090/getStateInstance/87b8fb91f77f4ec780f8820daea7f87733a94ea55d084b5594`
+      )
+      .then((d) => setAccState(d.data.stateInstance))
+      .catch((error) => console.log(error));
+
+    setLoggedIn(true);
+  };
   useEffect(() => {
-    if (user) {
+    getAccountState();
+  }, [location, isLoggedIn, qr]);
+  useEffect(() => {
+    getQrCode();
+  }, [accState, qr]);
+  useEffect(() => {
+    if (isLoggedIn && accState === "authorized") {
       navigate("/home");
     }
-  }, [location.pathname]);
-  const handleLogin = () => {
-    setOpen(true);
-  };
+    console.log(isLoggedIn);
+  }, [location.pathname, accState, isLoggedIn]);
+
   return (
     <div className="login_div">
-      <h1>Enter your phone number</h1>
+      <h1>Scan the QR code</h1>
       <p>
-        WhatsApp will need to verify your account.{" "}
-        <a href="">What's my number?</a>
+        Point your phone to this screen to capture the QR code and refresh the
+        page
       </p>
-      <div>
-        <PhoneInput
-          country={"ru"}
-          value={phone}
-          onChange={(e) => setPhone(e)}
-        />
-      </div>
-      <button className="next_button" onClick={handleLogin}>
-        Next <ArrowForward />
-      </button>
-      <Modall open={open} setOpen={setOpen} />
+      {qr !== "" && <img src={`data:image/png;base64,${qr}`} alt="qr_code" />}
     </div>
   );
 };

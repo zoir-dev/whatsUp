@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import "./style.scss";
 import {
@@ -10,28 +10,58 @@ import {
   Send,
 } from "@mui/icons-material";
 import { data } from ".";
+import axios from "axios";
 
 const Right = ({ chat }) => {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       setMessage("");
     }
   };
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     setMessage("");
-    e.preventDefault();
+    const apiUrl = `https://api.green-api.com/waInstance1101822090/sendMessage/87b8fb91f77f4ec780f8820daea7f87733a94ea55d084b5594`;
+    const headers = {
+      "Content-Type": "application/json",
+    };
 
-    // Regex expression to remove all characters which are NOT alphanumeric
-    // let number = mobileNumber.replace(/[^\w\s]/gi, "").replace(/ /g, "");
+    const requestBody = {
+      chatId: "998912838413@c.us",
+      message: message,
+    };
 
-    // Appending the phone number to the URL
-    let url = `https://web.whatsapp.com/send?phone=${+998332838413}`;
-    url += `&text=${encodeURI(message)}&app_absent=0`;
-
-    // Open our newly created URL in a new tab to send the message
-    window.open(url);
+    const response = await axios.post(apiUrl, {
+      headers: headers,
+      data: requestBody,
+    });
+    console.log(response);
   };
+  const getMessages = () => {
+    axios
+      .post(
+        `https://api.green-api.com/waInstance1101822090/GetChatHistory/87b8fb91f77f4ec780f8820daea7f87733a94ea55d084b5594`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: {
+            chatId: "998912838413@c.us",
+          },
+        }
+      )
+      .then((response) => {
+        setMessages(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        // console.error("Failed to get contacts", error);
+      });
+  };
+  useEffect(() => {
+    getMessages();
+  }, [chat]);
   return (
     <div className="right_div">
       <div className="header">
